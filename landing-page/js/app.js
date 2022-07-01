@@ -27,46 +27,43 @@ let numOfSections = sections.length;
 const navBarList = document.querySelector('#navbar__list');
 
 
-/**
- * End Global Variables
- * Start Helper Functions
- * 
-*/
-for(const section of sections){
-    console.log(section);
-    const linkName = section.getAttribute('data-nav');
-    const linkId = section.getAttribute('id');
-    const navLink = document.createElement('li');
-    navLink.innerHTML = `<a class='menu__link' href='#${linkId}'> ${linkName} </a>`
-    navBarList.insertAdjacentElement("beforeend", navLink);
+//function to create the nav
+function createNavList() {
+    for (const section of sections) {
+        console.log(section);
+        const linkName = section.getAttribute('data-nav');
+        const linkId = section.getAttribute('id');
+        const navLink = document.createElement('li');
+        navLink.innerHTML = `<a class='menu__link' href='#${linkId}'> ${linkName} </a>`
+        navBarList.insertAdjacentElement("beforeend", navLink);
+    };
 };
 
 
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
+//function to check if the section is in vewport
+function checkViewPort(sec){
+    let sectionView = sec.getBoundingClientRect();
+    return (sectionView.top >= 0 && sectionView.top< window.innerHeight);
+};
 
-// build the nav
+//function to chage class name of section if in view
+function chageClassName(){
+    for(section of sections){
+        if(checkViewPort(section)){
+            if(!section.classList.contains('your-active-class')){
+                section.classList.add('your-active-class');
+            }
+        }
+        else{
+            section.classList.remove('your-active-class');
+        }
+    }
+}
 
+//create navlist based on the num of sections
+createNavList();
 
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
 
 // Set sections as active
-
+document.addEventListener('scroll', chageClassName);
 
