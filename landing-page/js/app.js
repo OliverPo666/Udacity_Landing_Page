@@ -22,6 +22,9 @@
  * Define Global Variables
  * 
 */
+const sections = document.querySelectorAll('section');
+let numOfSections = sections.length;
+const navBarList = document.querySelector('#navbar__list');
 
 
 /**
@@ -29,7 +32,14 @@
  * Start Helper Functions
  * 
 */
-
+for(const section of sections){
+    console.log(section);
+    const linkName = section.getAttribute('data-nav');
+    const linkId = section.getAttribute('id');
+    const navLink = document.createElement('li');
+    navLink.innerHTML = `<a class='menu__link' href='#${linkId}'> ${linkName} </a>`
+    navBarList.insertAdjacentElement("beforeend", navLink);
+};
 
 
 /**
