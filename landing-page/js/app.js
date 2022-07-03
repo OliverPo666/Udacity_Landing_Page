@@ -45,7 +45,7 @@ function createNavList() {
 //function to check if the section is in vewport
 function checkViewPort(sec) {
     let sectionView = sec.getBoundingClientRect();
-    return (sectionView.top >= -100 && sectionView.bottom < window.innerHeight);
+    return (sectionView.top >= 0 && sectionView.bottom < window.innerHeight);
 };
 
 //function to chage style based on view
